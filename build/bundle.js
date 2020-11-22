@@ -1,1 +1,1 @@
-console.log("webpack");
+(()=>{"use strict";fetch("https://restcountries.eu/rest/v2/name/Ukraine").then((function(n){return console.log(n.json()),n.json()})).then((function(n){return console.log(n)})).catch((function(n){console.log(n)}))})();
