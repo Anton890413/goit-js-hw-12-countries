@@ -19,7 +19,10 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: ["babel-loader"],
-      }
+      },
+      
+      { test: /\.hbs$/, loader: "handlebars-loader" },
+
     ]
   },
   plugins: [new HtmlWebpackPlugin({ template: 'src/index.html' }),
