@@ -1,9 +1,10 @@
-/*import './css/style.css';
+import './css/style.css';
 import fetchCountries from './fetchCountries.js';
 import countryCardTpl from './templates/country-cards.hbs';
 import countriesListTemplate from './templates/countriesListTemplate.hbs';
 import debounce from 'lodash.debounce';
 import PNotify from 'pnotify/dist/es/PNotify.js';
+import PNotifyStyleMaterial from 'pnotify/dist/es/PNotifyStyleMaterial.js';
 
 
 const cardCountainer = document.querySelector('.description');
@@ -15,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const currInput = e.target;
     const searchQuery = currInput && currInput.value;
-    fetchCountries(name);
     clearListItems();
     fetchCountries(searchQuery)
       .then(renderCountryCard)
@@ -32,7 +32,7 @@ function handleSingleCountry(country) {
   cardCountainer.appendChild(block);
 }
 
-function handleMultipleCouuntries(countries) {
+function handleMultipleCountries(countries) {
   const cardCountainer = document.querySelector('.description');
   countries.forEach((country) => {
     const block = document.createElement('li');
@@ -47,7 +47,7 @@ function renderCountryCard(countries) {
   if (countries.length === 1) {
     handleSingleCountry(countries[0]);
   } else if (countries.length > 2 && countries.length <= 10) {
-    handleMultipleCouuntries(countries);
+    handleMultipleCountries(countries);
   } else if (countries.length > 10) {
       PNotify.defaults.styling = 'material';
       PNotify.error({
@@ -58,8 +58,8 @@ function renderCountryCard(countries) {
 }
 
 function clearListItems() {
-  handleMultipleCouuntries.innerHTML = '';
-}*/
+  cardCountainer.innerHTML = '';
+}
 
 /*const refs = {
   searchForm: document.querySelector('.search-form'),
@@ -118,69 +118,5 @@ function buildListItemMarkup(items) {
 
 function clearListItems() {
   refs.countryList.innerHTML = '';
-}*/
-import './css/style.css';
-import countryCardTpl from './templates/country-cards.hbs';
-import debounce from 'lodash.debounce';
-import { alert, defaultModules } from '@pnotify/core';
-import * as PNotifyMobile from '@pnotify/mobile';
-
-defaultModules.set(PNotifyMobile, {});
-
-const refs = {
-    cardCountainer: document.querySelector('.description'),
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-  const input = document.querySelector('.form-input');
-  input.addEventListener('input', debounce((e) => {
-    e.preventDefault();
-    const currInput = e.target;
-    const searchQuery = currInput && currInput.value;
-
-
-    fetchCountrybyId(searchQuery)
-      .then(renderCountryCard)
-      .catch(error => console.log('Error: ', error))
-      .finally(() => { currInput.value = ''; });
-  }, 500));
-});
-
-function fetchCountrybyId(name) {
-  return fetch(`https://restcountries.eu/rest/v2/name/${name}`)
-    .then(response => {
-      return response.json();
-    });
 }
-
-function handleSingleCountry(country) {
-  const cardCountainer = document.querySelector('.description');
-  const block = document.createElement('div');
-  const markup = countryCardTpl(country);
-  block.innerHTML = markup;
-  cardCountainer.appendChild(block);
-}
-
-function handleMultipleCouuntries(countries) {
-  const cardCountainer = document.querySelector('.description');
-  countries.forEach((country) => {
-    const block = document.createElement('li');
-    block.innerHTML = country && country.name;
-    cardCountainer.appendChild(block);
-  })
-}
-
-function renderCountryCard(countries) {
-  if (!countries || countries.length === 0) return;
-
-  if (countries.length === 1) {
-    handleSingleCountry(countries[0]);
-  } else if (countries.length > 2 && countries.length <= 10) {
-    handleMultipleCouuntries(countries);
-  } else if (countries.length > 10) {
-    alert({
-      text: 'Too many matches!',
-      delay: 2000
-    });
-  }
-}
+*/
