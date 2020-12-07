@@ -1,11 +1,15 @@
 <h2 class="card-title">{{name}}</h2>
 <div class="country-card">
     <div class="country-desc">
-        <p class="capital">{{capital}}</p>
-        <p class="population">{{population}}</p>
+        <p class="capital">
+            Capital:{{capital}}</p>
+        <p class="population">
+            Population:{{ population}}</p>
         <ul class="lang-list">
             {{#each languages}}
-            <li class="language">{{this.name}}</li>
+            <li class="language">
+                Languages:{{this.name}}
+            </li>
             {{/each}}
         </ul>
     </div>
